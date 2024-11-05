@@ -76,14 +76,14 @@ def main():
     print(wrapText)
 
     while True:
-        print("\nSelect a microservice to access:")
+        print("\nSelect a service to access:")
         print("1. Search an item using its name")
         print("2. Create a new item in your 'All' list")
         print("3. Retrieve all item names from a specific list")
         print("4. Help")
         print("5. Exit")
         
-        print("Input your choice (1-4) below, then press the enter key when you've made your decision.")
+        print("Input your choice (1-5) below, then press the enter key when you've made your decision.")
         choice = input("User Choice: ")
         
         if choice == '1':
