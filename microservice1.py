@@ -1,19 +1,27 @@
-# search for item
+#search for lists and files with keyword
 
 import zmq
 from pathlib import Path
 
-def getItem(item_name):
-    file_path = Path('All') / item_name
+def checkLists(list_keyword):
+    context = zmq.Context()
+    socket = context.socket(zmq.REQ)
+    socket.connect("tcp://localhost:5002")
 
-    if file_path.is_file():
-        print(f"The file '{item_name}' exists.")
-        with open(file_path, 'r') as file:
-            content = file.read()
-            return content
-    else:
-        respond = f"The file '{item_name}' does not exist." 
-        return respond
+    socket.send_string(list_keyword)
+    response = socket.recv_string() 
+
+    return response
+    
+def checkFiles(keyword):
+    context = zmq.Context()
+    socket = context.socket(zmq.REQ)
+    socket.connect("tcp://localhost:5003")
+
+    socket.send_string(keyword)
+    response = socket.recv_string() 
+
+    return response
 
 def microservice_1():
     context = zmq.Context()
@@ -21,10 +29,14 @@ def microservice_1():
     socket.bind("tcp://*:5001")  
 
     while True:
-        item_name = socket.recv_string() 
-        print(f"Received request: {item_name}")
-        itemInfo = getItem(item_name)
-        socket.send_string(itemInfo)
+        keyword = socket.recv_string()  
+        print(f"Received request: {keyword}")
+
+        listInfo = checkLists(keyword) 
+        itemInfo = checkFiles(keyword)
+        
+        response = f"Lists:\n{listInfo}\n\nItems (parent_folder/file_name):\n{itemInfo}"
+        socket.send_string(response) 
 
 if __name__ == '__main__':
     microservice_1()
