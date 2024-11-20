@@ -1,4 +1,4 @@
-#search for lists and files with keyword
+#search for folders and files with keyword
 
 import zmq
 from pathlib import Path
@@ -35,7 +35,7 @@ def microservice_1():
         listInfo = checkLists(keyword) 
         itemInfo = checkFiles(keyword)
         
-        response = f"Lists:\n{listInfo}\n\nItems (parent_folder/file_name):\n{itemInfo}"
+        response = f"Folders:\n{listInfo}\n\nFiles (parent_folder/file_name):\n{itemInfo}"
         socket.send_string(response) 
 
 if __name__ == '__main__':

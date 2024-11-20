@@ -11,10 +11,10 @@ def checkList(list_keyword):
     match = [str(p) for p in base_path.iterdir() if p.is_dir() and keyword_var in p.name.lower()]
 
     if match:
-        print(f"Directories matching '{list_keyword}': {match}")
+        print(f"Folders matching '{list_keyword}': {match}")
         return '\n'.join(match)
     else:
-        respond = f"No directories found containing '{list_keyword}'."
+        respond = f"No folders found containing '{list_keyword}'."
         print(respond)
         return respond
 

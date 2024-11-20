@@ -7,12 +7,12 @@ def choiceOne():
     socket = context.socket(zmq.REQ)
     socket.connect("tcp://localhost:5001")
     
-    keyword_name = input("Enter item keyword: ")
-    print(f'Searching for {keyword_name}.')
+    keyword_name = input("Enter keyword: ")
+    print(f'Searching for keyword {keyword_name}.')
 
     socket.send_string(keyword_name)
     response = socket.recv_string() 
-    print(f"Results: \n{response}")
+    print(f"Search Results: \n{response}")
     socket.disconnect("tcp://localhost:5001")
 
 def main():
@@ -21,7 +21,7 @@ def main():
 
     print("Welcome to my microservice!")
 
-    introText = ("This is a search microservice, which will allow users to search for lists and files with a keyword input.")
+    introText = ("This is a search microservice, which will allow users to search for folders and files with a keyword input.")
     wrapText = textwrap.fill(introText, width=90)
 
     print(wrapText)
