@@ -57,8 +57,20 @@ def choiceThree():
     print(f"Items in {list_name} list are {response}")
     socket.disconnect("tcp://localhost:5003")
 
-
 def choiceFour():
+    context = zmq.Context()
+    socket = context.socket(zmq.REQ)
+    socket.connect("tcp://localhost:5001")
+    
+    keyword_name = input("Enter keyword: ")
+    print(f'Searching for keyword {keyword_name}.')
+
+    socket.send_string(keyword_name)
+    response = socket.recv_string() 
+    print(f"Search Results: \n{response}")
+    socket.disconnect("tcp://localhost:5004")
+
+def choiceFive():
     print('A bucket list program helps users manage, and track the goals they wish to accomplish.')
     print('\nMy Bucket List provides an organized and interactive way to interact with items in your bucket list.')
     print('\nMore Questions? Contact us at bucketlist/help@email.com')
@@ -80,8 +92,9 @@ def main():
         print("1. Search an item using its name")
         print("2. Create a new item in your 'All' list")
         print("3. Retrieve all item names from a specific list")
-        print("4. Help")
-        print("5. Exit")
+        print("4. Search using keyword")
+        print("5. Help")
+        print("6. Exit")
         
         print("Input your choice (1-5) below, then press the enter key when you've made your decision.")
         choice = input("User Choice: ")
@@ -99,6 +112,9 @@ def main():
             choiceFour()
             time.sleep(1)
         elif choice == '5':
+            choiceFive()
+            time.sleep(1)
+        elif choice == '6':
             print("Exiting...")
             break
         else:
