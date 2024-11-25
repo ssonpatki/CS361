@@ -1,6 +1,7 @@
 import zmq
 import textwrap
 import time 
+import subprocess
 
 def choiceOne():
     context = zmq.Context()
@@ -60,7 +61,7 @@ def choiceThree():
 def choiceFour():
     context = zmq.Context()
     socket = context.socket(zmq.REQ)
-    socket.connect("tcp://localhost:5001")
+    socket.connect("tcp://localhost:5004")
     
     keyword_name = input("Enter keyword: ")
     print(f'Searching for keyword {keyword_name}.')
@@ -71,6 +72,14 @@ def choiceFour():
     socket.disconnect("tcp://localhost:5004")
 
 def choiceFive():
+    print("\nCalling client.js for login...")
+    try:
+        subprocess.run(["node", "login.js"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error occurred while calling login.js: {e}")
+
+
+def choiceSix():
     print('A bucket list program helps users manage, and track the goals they wish to accomplish.')
     print('\nMy Bucket List provides an organized and interactive way to interact with items in your bucket list.')
     print('\nMore Questions? Contact us at bucketlist/help@email.com')
@@ -93,8 +102,9 @@ def main():
         print("2. Create a new item in your 'All' list")
         print("3. Retrieve all item names from a specific list")
         print("4. Search using keyword")
-        print("5. Help")
-        print("6. Exit")
+        print("5. Login")
+        print("6. Help")
+        print("7. Exit")
         
         print("Input your choice (1-5) below, then press the enter key when you've made your decision.")
         choice = input("User Choice: ")
@@ -115,6 +125,9 @@ def main():
             choiceFive()
             time.sleep(1)
         elif choice == '6':
+            choiceSix()
+            time.sleep(1)
+        elif choice == '7':
             print("Exiting...")
             break
         else:
