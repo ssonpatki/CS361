@@ -1,10 +1,14 @@
-#search files
+#search for files with matching keyword (Port 5006)
 
 import zmq
 from pathlib import Path
 
 def checkFiles(keyword):
-    base_path = Path('.')  
+    with open('config/username.txt', 'r') as file:
+        # Read the entire content of the file
+            username = file.readline().strip()
+
+    base_path = Path(f'{username}')  
 
     keyword_var = keyword.lower()
 
@@ -18,7 +22,7 @@ def checkFiles(keyword):
         print(respond)
         return respond
 
-def microservice4_3():
+def searchFiles():
     context = zmq.Context()
     socket = context.socket(zmq.REP)  
     socket.bind("tcp://*:5006")  
@@ -30,4 +34,4 @@ def microservice4_3():
         socket.send_string(listInfo) 
 
 if __name__ == '__main__':
-    microservice4_3()
+    searchFiles()

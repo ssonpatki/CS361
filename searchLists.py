@@ -1,11 +1,15 @@
-#search for list
+#search for lists with matching keyword (Port 5005)
 
 import zmq
 from pathlib import Path
 
 def checkList(list_keyword):
-    base_path = Path('.') 
- 
+    with open('config/username.txt', 'r') as file:
+        # Read the entire content of the file
+            username = file.readline().strip()
+
+    base_path = Path(f'{username}')  
+
     keyword_var = list_keyword.lower()
 
     match = [str(p) for p in base_path.iterdir() if p.is_dir() and keyword_var in p.name.lower()]
@@ -18,7 +22,7 @@ def checkList(list_keyword):
         print(respond)
         return respond
 
-def microservice4_2():
+def searchLists():
     context = zmq.Context()
     socket = context.socket(zmq.REP)  
     socket.bind("tcp://*:5005")  
@@ -30,4 +34,4 @@ def microservice4_2():
         socket.send_string(listInfo) 
 
 if __name__ == '__main__':
-    microservice4_2()
+    searchLists()

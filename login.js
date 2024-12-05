@@ -1,7 +1,7 @@
 
 const readline = require('readline');
 const axios = require('axios');
-
+const fs = require('fs');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -10,6 +10,15 @@ const rl = readline.createInterface({
 
 
 rl.question('Enter your username: ', (username) => {
+  const dataToAppend = username;
+
+  fs.writeFile('config/username.txt', dataToAppend, (err) => {
+    if (err) {
+      console.error("Error appending to file:", err);
+      return;
+    }
+  });
+
   rl.question('Enter your password: ', async (password) => {
     try {
 
