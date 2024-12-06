@@ -23,16 +23,7 @@ The client connects to the specific microservice, then sends the inputs through 
 
 `socket.send_string(<someInput>)`
 
-#### 1. Search an item using its name (`microservice1.py`)
-
-
-#### 2. Create a new item in your 'All' list (`microservice2.py`)
-
-
-#### 3. Retrieve all item names from a specific list (`microservice3.py`)
-
-
-#### 4. Search using keyword (`searchKeyword.py`)
+#### Search using keyword (`searchKeyword.py`)
 
 Calls `searchLists.py` and `searchFiles.py`. Combines the response and sends it back to the client.
 
@@ -41,3 +32,20 @@ Searches for folders in repository with corresponding keyword
 
 ##### `searchFiles.py` 
 Searches for files in repository with corresponding keyword
+
+#### Retrieve all item names from a specific list (`retrieveList.py`)
+
+#### Read contents of a specific item from a specific list (`readFile.py`)
+
+#### Edit contents of a specific item from a specific list (`editFile.py`)
+
+#### Create new blank item in a specific list (`readItem.py`)
+
+#### Create new list (`createFolder.py`)
+
+#### Delete specific item from a specific list (`deleteItem.py`)
+
+
+
+
+

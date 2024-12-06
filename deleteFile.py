@@ -35,7 +35,7 @@ def deleteFile():
 
         with open('config/username.txt', 'r') as file:
         # Read the entire content of the file
-            username = file.read()
+            username = file.readline().strip()
 
         itemName, itemFolder = socket.recv_multipart()
         itemName = itemName.decode('utf-8').strip()

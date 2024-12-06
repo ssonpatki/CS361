@@ -27,14 +27,21 @@ rl.question('Enter your username: ', (username) => {
         password
       });
 
+      data = '\nyes'
+      fs.appendFile('config/username.txt', data, (err) => {
+        if (err) throw err;
+      });
 
       console.log('Response:', response.data);
     } catch (err) {
+      data = '\nno'
+      fs.appendFile('config/username.txt', data, (err) => {
+        if (err) throw err;
+      });
+      
       if (err.response) {
-
         console.log('Error:', err.response.data.message);
       } else {
-
         console.log('Error: Could not reach the server');
       }
     } finally {

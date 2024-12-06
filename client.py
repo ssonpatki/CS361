@@ -161,7 +161,7 @@ def editItem():
     check = 'no'
     while (check == 'no'):
         print("Remember to use camelCase when entering item names.")
-        item_folder = input("Enter folder to insert item: ")
+        item_folder = input("Enter folder that contains item: ")
         item_name = input("Enter item name: ")
         print("Is this the right folder and name: ", item_folder, item_name)
         check = input("Input yes or no: ")
@@ -223,12 +223,12 @@ def userChoices():
     while True:
         print("\nSelect a service to access:")
         print("1. Search using keyword")
-        print("2. Retrieve all item names from a specific list")
-        print("3. Read item contents (parent folder and exact item name required): ")
+        print("2. Retrieve all item names from a list (exact list name required)")
+        print("3. Read item contents (parent folder and exact item name required) ")
         print("4. Create new list")
-        print("5. Create blank item in specific list")
-        print("6. Edit item in specific list")
-        print("7. Delete item in specific folder")
+        print("5. Create blank item in a list (exact list name required)")
+        print("6. Edit item in a list (exact list name required)")
+        print("7. Delete item in a list (exact list name required)")
         print("8. Help Page")
         print("9. Exit")
         
@@ -280,10 +280,10 @@ def main():
     print(wrapText)
 
     while True:
-        print("\nSelect a service to access:")
         allowLogin = 'no'
 
         while (allowLogin == 'no'):
+            print("\nSelect a service to access:")
             print("1. Login")
             print("2. Create account")
             print("3. Exit")
@@ -295,13 +295,16 @@ def main():
                 loginServer()
                 time.sleep(1)
                 loginClient()
-                allowLogin = 'yes'
+                with open('config/username.txt', 'r') as f:
+                    next(f) 
+                    second_line = f.readline().strip()
+                allowLogin = second_line
                 time.sleep(1)
             elif choice == '2':
                 accountServer()
                 time.sleep(1)
                 createAccount()
-                time.sleep(1)
+                time.sleep(2)
             elif choice == '3':
                 print("Exiting...")
                 return
