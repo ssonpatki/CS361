@@ -1,4 +1,6 @@
-# CS361
+# CS361 - Analysis of Algorithms
 
-### This is used as a folder for the various course assignments for CS361.
-#### Each branch of this repository is a different assignment.
+## Course Topics:
+### Asymptotic running time analysis, Recursion, Divide and conquer, Dynamic programming, Greedy algorithms, Linear programming, Computational complexity (P and NP), Randomization*, Approximation algorithms*
+
+#### Note: This is used as a folder for the various course assignments for CS361. Each branch of this repository is a different assignment.
