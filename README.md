@@ -1,6 +1,6 @@
 # CS361 - Software Engineering I
 
-## Course Topics:
+## Learning Outcomes:
 ### 1. Select the most appropriate software process model to use in a particular situation
 ### 2. Synthesize requirements for a realistic software system and write requirements specification documentation
 ### 3. Engage with team members to collaboratively solve problems, effectively utilizing oral and/or written communication skills
